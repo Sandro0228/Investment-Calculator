@@ -8,7 +8,7 @@ const initialUserInput = {
   duration: 10,
 };
 
-const CalculatorFrom = (props) => {
+const CalculatorFrom = (props, event) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const submitHandler = (event) => {
