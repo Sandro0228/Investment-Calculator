@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import CalculatorFrom from "./components/CalculatorFrom";
+import CalculatorForm from "./components/CalculatorForm";
 import CalculatedTable from "./components/CalculatedTable";
 
 function App() {
@@ -34,9 +34,11 @@ function App() {
     <div>
       <Header />
 
-      <CalculatorFrom onCalculate={calculateHandler} />
+      <CalculatorForm onCalculate={calculateHandler} />
 
-      {!userInput && <p>No investment calculated yet!</p>}
+      {!userInput && (
+        <p style={{ textAlign: "center" }}>No investment calculated yet!</p>
+      )}
       {userInput && (
         <CalculatedTable
           data={yearlyData}

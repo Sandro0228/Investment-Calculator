@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../index.css";
+import classes from "./CalculatorForm.module.css";
 
 const initialUserInput = {
   "current-savings": 10000,
@@ -8,7 +8,7 @@ const initialUserInput = {
   duration: 10,
 };
 
-const CalculatorFrom = (props, event) => {
+const CalculatorForm = (props) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const submitHandler = (event) => {
@@ -25,18 +25,18 @@ const CalculatorFrom = (props, event) => {
     setUserInput((prevInput) => {
       return {
         ...prevInput,
-        [input]: value,
+        [input]: +value,
       };
     });
   };
 
   return (
-    <form onSubmit={submitHandler} className="form">
-      <div className="input-group">
+    <form onSubmit={submitHandler} className={classes.form}>
+      <div className={classes["input-group"]}>
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>
           <input
-            onChange={() =>
+            onChange={(event) =>
               inputChangeHandler("current-savings", event.target.value)
             }
             value={userInput["current-savings"]}
@@ -47,7 +47,7 @@ const CalculatorFrom = (props, event) => {
         <p>
           <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
           <input
-            onChange={() =>
+            onChange={(event) =>
               inputChangeHandler("yearly-contribution", event.target.value)
             }
             value={userInput["yearly-contribution"]}
@@ -56,13 +56,13 @@ const CalculatorFrom = (props, event) => {
           />
         </p>
       </div>
-      <div className="input-group">
+      <div className={classes["input-group"]}>
         <p>
           <label htmlFor="expected-return">
             Expected Interest (%, per year)
           </label>
           <input
-            onChange={() =>
+            onChange={(event) =>
               inputChangeHandler("expected-return", event.target.value)
             }
             value={userInput["expected-return"]}
@@ -73,18 +73,24 @@ const CalculatorFrom = (props, event) => {
         <p>
           <label htmlFor="duration">Investment Duration (years)</label>
           <input
-            onChange={() => inputChangeHandler("duration", event.target.value)}
+            onChange={(event) =>
+              inputChangeHandler("duration", event.target.value)
+            }
             value={userInput["duration"]}
             type="number"
             id="duration"
           />
         </p>
       </div>
-      <p className="actions">
-        <button onClick={resetHandler} type="reset" className="buttonAlt">
+      <p className={classes.actions}>
+        <button
+          onClick={resetHandler}
+          type="reset"
+          className={classes.buttonAlt}
+        >
           Reset
         </button>
-        <button type="submit" className="button">
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>
@@ -92,4 +98,4 @@ const CalculatorFrom = (props, event) => {
   );
 };
 
-export default CalculatorFrom;
+export default CalculatorForm;
